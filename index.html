@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#06111d" />
+  <meta name="description" content="GED0081 Physics vector review site for Lessons 1 and 2." />
+  <title>Vector Lab — GED0081 Lessons 1 & 2</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="physics-bg" aria-hidden="true">
+    <div class="grid-plane"></div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div>
+  </div>
+
+  <header class="topbar">
+    <button class="brand" data-route="home" aria-label="Go to home">
+      <span class="brand-symbol">∑</span>
+      <span class="brand-copy"><strong>VECTOR LAB</strong><small>GED0081 • LESSONS 1 + 2</small></span>
+    </button>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-route="home">Home</button>
+      <button class="nav-btn" data-route="structured">Structured</button>
+      <button class="nav-btn" data-route="mixed">Mixed</button>
+      <button class="nav-btn" data-route="flashcards">Flashcards</button>
+      <button class="nav-btn formula-nav" id="formulaNav"><span>Σ</span> Formula Vault</button>
+    </nav>
+  </header>
+
+  <button id="formulaRail" class="formula-rail" aria-controls="formulaDrawer" aria-expanded="false">
+    <span class="rail-icon">Σ</span>
+    <span>FORMULA<br>VAULT</span>
+    <small>PRESS F</small>
+  </button>
+
+  <main class="shell">
+    <section id="home" class="view active-view">
+      <div class="hero-panel panel">
+        <div class="hero-copy-wrap">
+          <p class="eyebrow">COLLEGE PHYSICS 1 • VECTOR SYSTEMS</p>
+          <h1>See the vector.<br><span>Choose the equation.</span><br>Solve with confidence.</h1>
+          <p class="hero-copy">A focused reviewer for Module 1: Vectors and Module 2: Operations on Vectors. The Formula Vault stays on top of the page, tests give instant feedback, and missed flashcards keep returning until you get them right.</p>
+          <div class="hero-actions">
+            <button class="primary" data-route="structured">Start structured test</button>
+            <button class="secondary" data-route="mixed">Start timed mixed test</button>
+          </div>
+          <div class="shortcut-line"><kbd>F</kbd> opens formulas anywhere • progress saves on this device</div>
+        </div>
+
+        <div class="hero-instrument" aria-label="Decorative vector coordinate display">
+          <div class="instrument-label">VECTOR FIELD // LIVE</div>
+          <svg viewBox="0 0 420 320" role="img" aria-label="Coordinate plane with vectors A, B, and R">
+            <defs>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker>
+              <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" /></marker>
+            </defs>
+            <g class="svg-grid">
+              <path d="M40 40H390 M40 90H390 M40 140H390 M40 190H390 M40 240H390 M40 290H390" />
+              <path d="M40 40V290 M90 40V290 M140 40V290 M190 40V290 M240 40V290 M290 40V290 M340 40V290 M390 40V290" />
+            </g>
+            <path class="axis-line" d="M40 240H395"/><path class="axis-line" d="M190 295V35"/>
+            <path class="vec-a" d="M190 240L340 165" marker-end="url(#arrowCyan)"/>
+            <path class="vec-b" d="M190 240L115 120" marker-end="url(#arrowAmber)"/>
+            <path class="vec-r" d="M190 240L265 75" marker-end="url(#arrowCyan)"/>
+            <circle class="origin-dot" cx="190" cy="240" r="5"/>
+            <text x="345" y="165">A</text><text x="95" y="112">B</text><text x="272" y="70">R</text>
+            <text class="axis-label" x="398" y="245">x</text><text class="axis-label" x="196" y="32">y</text>
+          </svg>
+          <div class="instrument-readout"><span>DOT → scalar</span><span>CROSS → vector</span><span>θ from +x</span></div>
+        </div>
+      </div>
+
+      <div class="formula-callout panel" id="formulaCallout">
+        <div class="callout-mark">Σ</div>
+        <div><p class="eyebrow">ALWAYS AVAILABLE</p><h2>Your formulas are one click away.</h2><p>Open the Formula Vault from the bright tab on the right. It slides over the current page, so your test never disappears.</p></div>
+        <button class="primary" id="formulaCalloutBtn">Open Formula Vault</button>
+      </div>
+
+      <div class="mode-grid">
+        <article class="mode-card panel">
+          <div class="mode-index">01</div><div class="mode-icon">→</div>
+          <h2>Structured Test</h2>
+          <p>Lesson-by-lesson practice with exactly two questions for every formula topic.</p>
+          <div class="mode-meta"><span>30 questions</span><span>Instant explanations</span></div>
+          <button class="text-link" data-route="structured">Enter structured test →</button>
+        </article>
+        <article class="mode-card panel featured">
+          <div class="mode-index">02</div><div class="mode-icon">⏱</div>
+          <h2>Timed Mixed Test</h2>
+          <p>Twenty shuffled questions with no formula labels. You choose the method under time pressure.</p>
+          <div class="mode-meta"><span>20 minutes</span><span>20 questions</span></div>
+          <button class="text-link" data-route="mixed">Enter mixed test →</button>
+        </article>
+        <article class="mode-card panel">
+          <div class="mode-index">03</div><div class="mode-icon">↻</div>
+          <h2>Flashcard Loop</h2>
+          <p>Wrong cards go to Retry Soon. Right cards move to Later, then return once before mastery.</p>
+          <div class="mode-meta"><span>Adaptive repeat</span><span>Lesson filters</span></div>
+          <button class="text-link" data-route="flashcards">Enter flashcards →</button>
+        </article>
+      </div>
+
+      <div class="lesson-bands">
+        <article class="lesson-band panel"><div class="lesson-number">L1</div><div><p class="eyebrow">MODULE 1</p><h3>Vectors</h3><p>Magnitude • direction • vector form • unit vectors</p></div></article>
+        <article class="lesson-band panel"><div class="lesson-number">L2</div><div><p class="eyebrow">MODULE 2</p><h3>Operations on Vectors</h3><p>Components • resultant • equilibrant • dot product • cross product</p></div></article>
+      </div>
+    </section>
+
+    <section id="structured" class="view">
+      <div class="section-head">
+        <div><p class="eyebrow">TEST 01 // GUIDED</p><h1>Structured formula test</h1><p>Two questions per formula topic, in lesson order. Correct option positions are shuffled each run.</p></div>
+        <button class="secondary" data-reset="structured">Reset test</button>
+      </div>
+      <div id="structuredMount"></div>
+    </section>
+
+    <section id="mixed" class="view">
+      <div class="section-head">
+        <div><p class="eyebrow">TEST 02 // TIMED</p><h1>Mixed vector test</h1><p>Twenty shuffled questions. No formula labels. The timer starts when the test opens.</p></div>
+        <button class="secondary" data-reset="mixed">New mixed test</button>
+      </div>
+      <div id="mixedMount"></div>
+    </section>
+
+    <section id="flashcards" class="view">
+      <div class="section-head flash-heading">
+        <div><p class="eyebrow">REVIEW LOOP</p><h1>Flashcards that come back</h1><p>Reveal the answer, then rate yourself. Missed cards repeat soon; correct cards return later once more.</p></div>
+        <div class="flash-controls">
+          <select id="deckFilter" aria-label="Flashcard lesson filter">
+            <option value="all">Lessons 1 + 2</option>
+            <option value="1">Lesson 1 only</option>
+            <option value="2">Lesson 2 only</option>
+          </select>
+          <button id="restartCards" class="secondary">Restart deck</button>
+        </div>
+      </div>
+      <div id="flashMount"></div>
+    </section>
+  </main>
+
+  <aside id="formulaDrawer" class="formula-drawer" aria-hidden="true">
+    <div class="drawer-topline"><span>REFERENCE OVERLAY</span><span>DOES NOT LEAVE YOUR TEST</span></div>
+    <div class="drawer-head">
+      <div><p class="eyebrow">FORMULA VAULT</p><h2>Lessons 1 + 2</h2></div>
+      <button id="formulaClose" class="icon-btn" aria-label="Close formulas">×</button>
+    </div>
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-formula-tab="1">Lesson 1</button>
+      <button class="drawer-tab" data-formula-tab="2">Lesson 2</button>
+    </div>
+    <div id="formulaContent" class="formula-content"></div>
+  </aside>
+  <div id="drawerScrim" class="drawer-scrim" hidden></div>
+
+  <template id="completionTemplate">
+    <div class="completion panel">
+      <div class="cat-frame"><img class="completion-cat" alt="Cat completion image" /></div>
+      <div class="completion-copy-wrap">
+        <p class="eyebrow">RUN COMPLETE</p>
+        <h2 class="completion-title"></h2>
+        <p class="completion-score"></p>
+        <p class="completion-copy"></p>
+        <button class="primary completion-restart">Run it again</button>
+      </div>
+    </div>
+  </template>
+
+  <footer><span>VECTOR LAB // GED0081</span><span>Lessons 1 + 2</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
